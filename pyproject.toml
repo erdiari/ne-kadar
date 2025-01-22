@@ -1,0 +1,15 @@
+[project]
+name = "ne-kadar"
+version = "0.1.0"
+description = "Fiyat tahmin etme oyunu"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.1.5",
+    "requests>=2.32.3",
+]
+
+[dependency-groups]
+dev = [
+  # "jupyterlab>=4.3.4" 
+]

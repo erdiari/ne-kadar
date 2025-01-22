@@ -1,0 +1,101 @@
+{
+  "id": 2272675972,
+  "title": "Roborock Q7 Max Robot Süpürge",
+  "url": "/robot-supurgeler/en-ucuz-roborock-q7-max-robot-supurge-fiyatlari,a2272675972",
+  "merchantCount": 11,
+  "brand": {
+    "id": 40129,
+    "name": "Roborock",
+    "slug": "roborock"
+  },
+  "category": {
+    "id": "5699",
+    "name": "Robot Süpürgeler",
+    "slug": "robot-supurgeler"
+  },
+  "model": "Q7 Max",
+  "imageId": 833837217,
+  "review": {
+    "rate": 3.5,
+    "count": 0
+  },
+  "badge": {
+    "isNew": false,
+    "discountRatio": 0
+  },
+  "unitType": null,
+  "topSpecs": [
+    {
+      "name": "Ağırlık",
+      "value": "3.6 kg"
+    },
+    {
+      "name": "Akıllı Navigasyon",
+      "value": "Yok"
+    },
+    {
+      "name": "Aşılabilir Engel",
+      "value": "20 mm"
+    },
+    {
+      "name": "Aşılabilir Yükseklik",
+      "value": "20 mm"
+    },
+    {
+      "name": "Bölge Bloklama",
+      "value": "Süpürme-Mop"
+    },
+    {
+      "name": "Bölge Bloklama Yöntemi",
+      "value": "Mobil Uygulama"
+    },
+    {
+      "name": "Çalışma Süresi",
+      "value": "180 dk"
+    },
+    {
+      "name": "Çoklu Harita Desteği",
+      "value": "Var"
+    },
+    {
+      "name": "Düşme Engelleyici Sensör",
+      "value": "Var"
+    },
+    {
+      "name": "Emiş Gücü",
+      "value": "4200 Pa"
+    }
+  ],
+  "topOffers": [
+    {
+      "id": 1610121927,
+      "price": 13247.86,
+      "merchant": {
+        "id": 12929,
+        "name": "Pazarama"
+      },
+      "unitPrice": null
+    },
+    {
+      "id": 1721696854,
+      "price": 13299,
+      "merchant": {
+        "id": 4093,
+        "name": "Turkcell"
+      },
+      "unitPrice": null
+    },
+    {
+      "id": 1075086763,
+      "price": 13329,
+      "merchant": {
+        "id": 4230,
+        "name": "Mediamarkt"
+      },
+      "unitPrice": null
+    }
+  ],
+  "offerCount": 34,
+  "isAdult": null,
+  "rank": null
+}
