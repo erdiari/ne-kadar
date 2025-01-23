@@ -87,7 +87,7 @@ def get_image(title: str, image_id: int):
         with open("current_product.jpg", "wb") as file:
             file.write(response.content)
 
-        return True
+        return url
     except requests.exceptions.RequestException as e:
         print(f"Error downloading image: {e}")
         return False
@@ -98,12 +98,24 @@ if __name__ == "__main__":
     with open("current_product.json", "w") as f:
         json.dump(prod, f, indent=2, ensure_ascii=False)
 
+    img_url = None
+
     if prod:
         prod_title = prod.get("title")
         prod_img_id = prod.get("imageId")
         if prod_title and prod_img_id:
-            status = get_image(prod_title, prod_img_id)
-            if not status:
+            img_url = get_image(prod_title, prod_img_id)
+            if not img_url:
                 print(f"Could not download: {prod_title=} {prod_img_id}")
+
+    if prod:
+        offers = [offer["price"] for offer in prod["topOffers"]]
+        with open("current_values.json", "w") as f:
+            json.dump(
+                {"minPrice": min(offers), "maxPrice": max(offers), "img": img_url},
+                f,
+                indent=2,
+                ensure_ascii=False,
+            )
 
     print(json.dumps(prod, indent=2))

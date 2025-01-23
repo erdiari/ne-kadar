@@ -1,22 +1,22 @@
 {
-  "id": 2272675972,
-  "title": "Roborock Q7 Max Robot Süpürge",
-  "url": "/robot-supurgeler/en-ucuz-roborock-q7-max-robot-supurge-fiyatlari,a2272675972",
-  "merchantCount": 11,
+  "id": 2372360745,
+  "title": "Samsung Galaxy A06 128GB 4GB Ram Siyah",
+  "url": "/cep-telefonlari/en-ucuz-samsung-galaxy-a06-fiyatlari,2372360745",
+  "merchantCount": 16,
   "brand": {
-    "id": 40129,
-    "name": "Roborock",
-    "slug": "roborock"
+    "id": 8,
+    "name": "Samsung",
+    "slug": "samsung"
   },
   "category": {
-    "id": "5699",
-    "name": "Robot Süpürgeler",
-    "slug": "robot-supurgeler"
+    "id": "130",
+    "name": "Cep Telefonları",
+    "slug": "cep-telefonlari"
   },
-  "model": "Q7 Max",
-  "imageId": 833837217,
+  "model": "Galaxy A06 128GB 4GB Ram Siyah",
+  "imageId": 919347996,
   "review": {
-    "rate": 3.5,
+    "rate": 0,
     "count": 0
   },
   "badge": {
@@ -26,76 +26,52 @@
   "unitType": null,
   "topSpecs": [
     {
-      "name": "Ağırlık",
-      "value": "3.6 kg"
+      "name": "Batarya Kapasitesi",
+      "value": "5000 mAh"
     },
     {
-      "name": "Akıllı Navigasyon",
-      "value": "Yok"
+      "name": "Dahili Depolama (Hafıza)",
+      "value": "128 GB"
     },
     {
-      "name": "Aşılabilir Engel",
-      "value": "20 mm"
+      "name": "Ekran Boyutu",
+      "value": "6.7 inç"
     },
     {
-      "name": "Aşılabilir Yükseklik",
-      "value": "20 mm"
-    },
-    {
-      "name": "Bölge Bloklama",
-      "value": "Süpürme-Mop"
-    },
-    {
-      "name": "Bölge Bloklama Yöntemi",
-      "value": "Mobil Uygulama"
-    },
-    {
-      "name": "Çalışma Süresi",
-      "value": "180 dk"
-    },
-    {
-      "name": "Çoklu Harita Desteği",
-      "value": "Var"
-    },
-    {
-      "name": "Düşme Engelleyici Sensör",
-      "value": "Var"
-    },
-    {
-      "name": "Emiş Gücü",
-      "value": "4200 Pa"
+      "name": "RAM Kapasitesi",
+      "value": "4 GB"
     }
   ],
   "topOffers": [
     {
-      "id": 1610121927,
-      "price": 13247.86,
+      "id": 1748636547,
+      "price": 6583.39,
       "merchant": {
-        "id": 12929,
-        "name": "Pazarama"
+        "id": 11512,
+        "name": "PttAVM"
       },
       "unitPrice": null
     },
     {
-      "id": 1721696854,
-      "price": 13299,
+      "id": 1713820810,
+      "price": 6639,
       "merchant": {
-        "id": 4093,
-        "name": "Turkcell"
+        "id": 1497,
+        "name": "Hepsiburada"
       },
       "unitPrice": null
     },
     {
-      "id": 1075086763,
-      "price": 13329,
+      "id": 1701310098,
+      "price": 6684.05,
       "merchant": {
-        "id": 4230,
-        "name": "Mediamarkt"
+        "id": 9968,
+        "name": "idefix"
       },
       "unitPrice": null
     }
   ],
-  "offerCount": 34,
+  "offerCount": 36,
   "isAdult": null,
   "rank": null
 }

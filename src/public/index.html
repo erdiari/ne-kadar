@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .game-container {
+            background-color: #f5f5f5;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .feedback {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .range-container {
+            margin: 2rem 0;
+            padding: 1rem;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+        .range-bar {
+            position: relative;
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 15px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .range-fill {
+            position: absolute;
+            height: 100%;
+            background-color: #007bff;
+            transition: all 0.3s ease;
+        }
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .too-high {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .too-low {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input {
+            padding: 0.5rem;
+            margin: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Price Range Guessing Game</h1>
+        <p>Try to guess a price within the valid range!</p>
+        <img src="current_product.jpg" alt="Item image" />
+        <p>Current attempts: <span id="attempts">0</span></p>
+        <div class="range-container">
+            <h3>Price Range</h3>
+            <div class="range-bar">
+                <div id="range-fill" class="range-fill"></div>
+            </div>
+            <div class="range-labels">
+                <span id="lower-bound">$0</span>
+                <span id="upper-bound">∞</span>
+            </div>
+        </div>
+        <div>
+            <input type="number" id="guess" placeholder="Enter price" min="0" step="0.01">
+            <button onclick="checkGuess()">Submit Guess</button>
+        </div>
+        <div id="feedback" class="feedback"></div>
+        <button onclick="newGame()">New Game</button>
+    </div>
+
+    <script>
+        let minCorrectPrice;
+        let maxCorrectPrice;
+        let attempts;
+        let lowerBound = 0;
+        let upperBound = Infinity;
+        let productData = null;
+
+        async function loadProductData() {
+            try {
+                const response = await fetch("current_values.json");
+                const data = await response.json();
+                minCorrectPrice = parseFloat(data.minPrice);
+                maxCorrectPrice = parseFloat(data.maxPrice);
+
+                if (isNaN(minCorrectPrice) || isNaN(maxCorrectPrice)) {
+                    throw new Error('Invalid price values');
+                }
+
+                
+                // Initialize the game
+                initGame();
+            } catch (error) {
+                console.error('Error loading product data:', error);
+            }
+        }
+        
+        function updateRangeDisplay() {
+            const lowerDisplay = document.getElementById('lower-bound');
+            const upperDisplay = document.getElementById('upper-bound');
+            const rangeFill = document.getElementById('range-fill');
+            
+            lowerDisplay.textContent = `${lowerBound.toFixed(2)}`;
+            upperDisplay.textContent = upperBound === Infinity ? '∞' : `${upperBound.toFixed(2)}`;
+            
+            // Update the visual fill of the range bar
+            if (upperBound === Infinity) {
+                rangeFill.style.left = '0%';
+                rangeFill.style.width = '100%';
+            } else {
+                const totalRange = upperBound - lowerBound;
+                const fillWidth = Math.min(100, (totalRange / upperBound) * 100);
+                rangeFill.style.left = `${(lowerBound / upperBound) * 100}%`;
+                rangeFill.style.width = `${fillWidth}%`;
+            }
+        }
+
+        function initGame() {
+            attempts = 0;
+            lowerBound = 0;
+            upperBound = Infinity;
+            document.getElementById('attempts').textContent = attempts;
+            updateRangeDisplay();
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('guess').value = '';
+        }
+
+        function checkGuess() {
+            const guessInput = document.getElementById('guess');
+            const feedbackDiv = document.getElementById('feedback');
+            const guess = parseFloat(guessInput.value);
+            
+            if (isNaN(guess)) {
+                feedbackDiv.textContent = 'Please enter a valid number';
+                return;
+            }
+
+            // Update the bounds based on the guess
+            if (guess > maxCorrectPrice && guess < upperBound) {
+                upperBound = guess;
+            } else if (guess < minCorrectPrice && guess > lowerBound) {
+                lowerBound = guess;
+            }
+            updateRangeDisplay();
+
+            attempts++;
+            document.getElementById('attempts').textContent = attempts;
+
+            if (guess >= minCorrectPrice && guess <= maxCorrectPrice) {
+                feedbackDiv.textContent = `Congratulations! You got it right in ${attempts} attempts! The price was between $${minCorrectPrice.toFixed(2)} and $${maxCorrectPrice.toFixed(2)}`;
+                feedbackDiv.className = 'feedback correct';
+            } else if (guess > maxCorrectPrice) {
+                feedbackDiv.textContent = 'Too high! Try again.';
+                feedbackDiv.className = 'feedback too-high';
+            } else {
+                feedbackDiv.textContent = 'Too low! Try again.';
+                feedbackDiv.className = 'feedback too-low';
+            }
+        }
+
+        function newGame() {
+            initGame();
+        }
+
+        loadProductData();
+    </script>
+</body>
+</html>
