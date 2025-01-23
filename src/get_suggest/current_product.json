@@ -1,20 +1,20 @@
 {
-  "id": 2372360745,
-  "title": "Samsung Galaxy A06 128GB 4GB Ram Siyah",
-  "url": "/cep-telefonlari/en-ucuz-samsung-galaxy-a06-fiyatlari,2372360745",
-  "merchantCount": 16,
+  "id": 564470156,
+  "title": "Venatura Berberis Vulgaris 60 Kapsül",
+  "url": "/bitkisel-besin-destekleri/en-ucuz-venatura-berberis-vulgaris-60-kapsul-fiyatlari,564470156",
+  "merchantCount": 20,
   "brand": {
-    "id": 8,
-    "name": "Samsung",
-    "slug": "samsung"
+    "id": 36411,
+    "name": "Venatura",
+    "slug": "venatura"
   },
   "category": {
-    "id": "130",
-    "name": "Cep Telefonları",
-    "slug": "cep-telefonlari"
+    "id": "1454",
+    "name": "Diğer Bitkisel Takviyeler",
+    "slug": "diger-bitkisel-takviyeler"
   },
-  "model": "Galaxy A06 128GB 4GB Ram Siyah",
-  "imageId": 919347996,
+  "model": "Berberis Vulgaris 60",
+  "imageId": 286063834,
   "review": {
     "rate": 0,
     "count": 0
@@ -26,52 +26,52 @@
   "unitType": null,
   "topSpecs": [
     {
-      "name": "Batarya Kapasitesi",
-      "value": "5000 mAh"
+      "name": "Adet",
+      "value": "60 adet"
     },
     {
-      "name": "Dahili Depolama (Hafıza)",
-      "value": "128 GB"
+      "name": "Kullanıcı Türü",
+      "value": "Yetişkin"
     },
     {
-      "name": "Ekran Boyutu",
-      "value": "6.7 inç"
+      "name": "Paket Sayısı",
+      "value": "1"
     },
     {
-      "name": "RAM Kapasitesi",
-      "value": "4 GB"
+      "name": "Ürün Tipi",
+      "value": "Kapsül"
     }
   ],
   "topOffers": [
     {
-      "id": 1748636547,
-      "price": 6583.39,
+      "id": 1623518398,
+      "price": 321.99,
       "merchant": {
-        "id": 11512,
-        "name": "PttAVM"
+        "id": 15264,
+        "name": "dermoevim"
       },
       "unitPrice": null
     },
     {
-      "id": 1713820810,
-      "price": 6639,
+      "id": 1743563523,
+      "price": 329,
       "merchant": {
-        "id": 1497,
-        "name": "Hepsiburada"
+        "id": 12631,
+        "name": "Evdeki Eczanem"
       },
       "unitPrice": null
     },
     {
-      "id": 1701310098,
-      "price": 6684.05,
+      "id": 775878235,
+      "price": 330,
       "merchant": {
-        "id": 9968,
-        "name": "idefix"
+        "id": 12830,
+        "name": "Selin Ecza"
       },
       "unitPrice": null
     }
   ],
-  "offerCount": 36,
+  "offerCount": 33,
   "isAdult": null,
   "rank": null
 }
