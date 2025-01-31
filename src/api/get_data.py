@@ -1,7 +1,14 @@
+from typing_extensions import Tuple
 import requests
 import json
 import random
+from pydantic import BaseModel
 
+class ProductData(BaseModel):
+    title: str
+    img_url: str
+    min_price: float
+    max_price: float
 
 def make_cimri_request(page: int = 10, keyword: str = "*", sort: str = "rank,desc"):
     url = "https://www.cimri.com/api/cimri"
@@ -46,7 +53,7 @@ def make_cimri_request(page: int = 10, keyword: str = "*", sort: str = "rank,des
         return None
 
 
-def get_random_product(*args, **kwargs) -> dict | None:
+def _get_data(*args, **kwargs) -> dict | None:
     page = random.randint(0, 100)
     result: dict | None = make_cimri_request(*args, **kwargs, page=page)
 
@@ -56,6 +63,19 @@ def get_random_product(*args, **kwargs) -> dict | None:
             return random.sample(products, k=1)[0]
         except AttributeError as e:
             print(e)
+
+
+def get_data(*args, **kwargs) -> dict | None:
+    prod = _get_data()
+    img_url, prod_title, offers = None, None, None
+    if prod:
+        prod_title = prod.get("title")
+        prod_img_id = prod.get("imageId")
+        offers = [offer["price"] for offer in prod["topOffers"]]
+        if prod_title and prod_img_id:
+            img_url = get_image(prod_title, prod_img_id)
+    if img_url and prod_title and offers:
+        return ProductData(title=prod_title, img_url=img_url, min_price=min(offers), max_price=max(offers) )
 
 
 def get_image(title: str, image_id: int):
@@ -94,7 +114,7 @@ def get_image(title: str, image_id: int):
 
 
 if __name__ == "__main__":
-    prod = get_random_product()
+    prod = _get_data()
     with open("current_product.json", "w") as f:
         json.dump(prod, f, indent=2, ensure_ascii=False)
 
