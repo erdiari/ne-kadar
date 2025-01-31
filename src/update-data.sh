@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Get the PID of the FastAPI process
-PID=$(pgrep -f "uvicorn main:app")
+PID=$(pgrep -f "python")
 
 if [ -n "$PID" ]; then
     kill -SIGUSR1 $PID

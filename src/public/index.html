@@ -86,7 +86,7 @@
     <div class="game-container">
         <h1>Price Range Guessing Game</h1>
         <p>Try to guess a price within the valid range!</p>
-        <img src="current_product.jpg" alt="Item image" />
+        <div class="img_div"></div>
         <p>Current attempts: <span id="attempts">0</span></p>
         <div class="range-container">
             <h3>Price Range</h3>
@@ -109,17 +109,23 @@
     <script>
         let minCorrectPrice;
         let maxCorrectPrice;
+        let productName = null;
+        let productImg = null;
         let attempts;
         let lowerBound = 0;
         let upperBound = Infinity;
-        let productData = null;
 
         async function loadProductData() {
             try {
-                const response = await fetch("current_values.json");
+                const response = await fetch("data");
                 const data = await response.json();
-                minCorrectPrice = parseFloat(data.minPrice);
-                maxCorrectPrice = parseFloat(data.maxPrice);
+                minCorrectPrice = parseFloat(data.min_price);
+                maxCorrectPrice = parseFloat(data.max_price);
+                productName = data.title;
+
+                const imgDiv = document.querySelector('.img_div');
+                const imageUrl = data.img_url;
+                imgDiv.innerHTML = `<img src="${imageUrl}" alt="Description">`;
 
                 if (isNaN(minCorrectPrice) || isNaN(maxCorrectPrice)) {
                     throw new Error('Invalid price values');

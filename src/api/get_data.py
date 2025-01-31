@@ -10,6 +10,12 @@ class ProductData(BaseModel):
     min_price: float
     max_price: float
 
+class ProductData(BaseModel):
+    title: str
+    img_url: str
+    min_price: float
+    max_price: float
+
 def make_cimri_request(page: int = 10, keyword: str = "*", sort: str = "rank,desc"):
     url = "https://www.cimri.com/api/cimri"
 
@@ -66,7 +72,7 @@ def _get_data(*args, **kwargs) -> dict | None:
 
 
 def get_data(*args, **kwargs) -> dict | None:
-    prod = _get_data()
+    prod = _get_data(*args, **kwargs)
     img_url, prod_title, offers = None, None, None
     if prod:
         prod_title = prod.get("title")
@@ -75,7 +81,12 @@ def get_data(*args, **kwargs) -> dict | None:
         if prod_title and prod_img_id:
             img_url = get_image(prod_title, prod_img_id)
     if img_url and prod_title and offers:
-        return ProductData(title=prod_title, img_url=img_url, min_price=min(offers), max_price=max(offers) )
+        return ProductData(
+            title=prod_title,
+            img_url=img_url,
+            min_price=min(offers),
+            max_price=max(offers),
+        )
 
 
 def get_image(title: str, image_id: int):

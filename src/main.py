@@ -2,7 +2,7 @@
 import json
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, JSONResponse
-from api import get_data
+from api.get_data import get_data as api_get_data
 import asyncio
 
 import signal
@@ -16,6 +16,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
+
 
 class DataSingleton:
     _instance = None
@@ -33,18 +34,20 @@ class DataSingleton:
 
     async def update_data(self):
         try:
-            self.data = await get_data()
-            print(self.data)
+            self.data = api_get_data()
             self.last_update = datetime.now()
             logger.info("Data updated successfully")
+            logger.info(json.dumps(self.data))
         except Exception as e:
             logger.error(f"Failed to update data: {e}")
 
     def get_data(self) -> Dict:
         return self.data
 
+
 app = FastAPI()
 data_singleton = DataSingleton()
+
 
 def signal_handler(signum, frame, loop):
     """Handle the update signal by scheduling the async update in the event loop"""
@@ -66,13 +69,16 @@ async def startup_event():
     loop = asyncio.get_running_loop()
     signal.signal(signal.SIGUSR1, partial(signal_handler, loop=loop))
 
+
 @app.get("/data")
 async def get_data():
     return data_singleton.get_data()
 
+
 @app.get("/last-update")
 async def get_last_update():
     return {"last_update": data_singleton.last_update}
+
 
 @app.get("/")
 async def root():
